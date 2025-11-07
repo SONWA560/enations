@@ -58,7 +58,7 @@ export default function DashboardPage() {
       const federationDoc = await getDoc(doc(db, "federations", federationId));
       
       if (federationDoc.exists()) {
-        const federationData = { id: federationDoc.id, ...federationDoc.data() };
+        const federationData: FederationData = { id: federationDoc.id, ...federationDoc.data() } as FederationData;
         console.log('Federation document:', federationData);
         
         // Fetch players from subcollection

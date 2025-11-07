@@ -62,7 +62,7 @@ export default function FederationPage() {
       const federationDoc = await getDoc(doc(db, "federations", federationId));
       
       if (federationDoc.exists()) {
-        const federationData = { id: federationDoc.id, ...federationDoc.data() };
+        const federationData: FederationData = { id: federationDoc.id, ...federationDoc.data() } as FederationData;
         
         // Fetch players from subcollection
         const playersRef = collection(db, `federations/${federationId}/players`);
@@ -81,7 +81,7 @@ export default function FederationPage() {
           const bracket = tournamentData?.bracket;
           
           if (bracket) {
-            const country = (federationData as any).country;
+            const country = federationData.country;
             let matchCount = 0;
             let totalGoals = 0;
             
