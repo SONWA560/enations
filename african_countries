@@ -1,0 +1,499 @@
+,index,ID,Name,Age,Nationality,Position,Height
+0,8438,259068,Ibrahima Kébé,19,Mali,CDM,6'1
+1,4778,258911,Tolu Arokodare,19,Nigeria,ST,6'6
+2,7802,258890,Fisayo Dele-Bashiru,19,Nigeria,CM,6'1
+3,7807,258764,Tahiru Awudu,20,Ghana,ST,5'9
+4,2304,258685,Jackson Muleka,20,DR Congo,ST,6'0
+5,6199,258608,Osman Bukari,21,Ghana,RW,5'7
+6,430,258490,Chadi Riad,17,Morocco,CB,5'10
+7,3704,258121,Akinkunmi Amoo,18,Nigeria,RW,5'4
+8,7275,257821,Alassane Ndao,23,Senegal,RM,5'9
+9,6851,257507,Steve Mvoué,18,Cameroon,CF,6'1
+10,6181,257406,Fodé Doucouré,19,Mali,RB,5'8
+11,7825,257405,Dialy Ndiaye,20,Senegal,GK,6'4
+12,7314,257343,Nana Kofi Babil,18,Ghana,LW,5'11
+13,923,257318,Kays Ruiz-Atil,17,Morocco,CM,5'8
+14,3230,257308,Samson Okikiola Tijani,18,Nigeria,CDM,5'9
+15,4901,257288,Maduka Okoye,20,Nigeria,GK,6'6
+16,2995,257204,Sinaly Diomande,19,Ivory Coast,CB,6'0
+17,8425,257190,Dickson Abiama,21,Nigeria,ST,6'0
+18,6848,256692,Moustapha Name,25,Senegal,CDM,6'1
+19,6490,256689,Lamine Gueye,22,Senegal,RW,5'10
+20,7867,256513,Tavio D'Almeida,19,Ivory Coast,CM,5'10
+21,1464,256035,Kamaldeen Sulemana,18,Ghana,LW,5'9
+22,3465,255928,Mohammed Diomande,18,Ivory Coast,RCM,5'9
+23,2368,255529,El Bilal Touré,18,Mali,ST,6'1
+24,7313,255441,Moussa Sissako,19,Mali,CB,6'2
+25,6187,255380,Ismaila Soro,22,Ivory Coast,CDM,5'8
+26,3531,255151,Simon Ngapandouetnbu,17,Cameroon,GK,6'2
+27,4185,255021,Jesse Sekidika,23,Nigeria,RM,5'9
+28,4070,255000,Terem Moffi,21,Nigeria,ST,6'2
+29,4736,254798,Alpha Dionkou,17,Senegal,RB,6'0
+30,8508,254525,Pape Habib Gueye,20,Senegal,ST,6'2
+31,1101,254088,Diallo Amad Traore,17,Ivory Coast,ST,5'9
+32,2876,253497,Pépé Bonet,17,DR Congo,GK,6'4
+33,5807,253181,Aiyegun Tosin,22,Nigeria,RM,5'10
+34,6857,253122,Amadou Dante,19,Mali,LB,5'11
+35,6481,253104,Ibrahim Cissé,21,Ivory Coast,CB,6'3
+36,8521,252802,Wilfried Singo,19,Ivory Coast,CB,6'3
+37,3628,252675,Joyskim Dawa Tchakonte,24,Cameroon,LCB,6'4
+38,3468,252580,Paul Omo Mukairu,20,Nigeria,ST,6'0
+39,3153,252523,Ibrahima Ndiaye,21,Senegal,RW,5'9
+40,5133,252485,Samuel Obeng,23,Ghana,LS,6'0
+41,1798,252438,Kelvin Ofori,18,Ghana,LM,5'8
+42,5816,252436,Ipalibo Jack,22,Nigeria,CDM,6'2
+43,7838,252261,Hamdi Akujobi,20,Nigeria,CDM,5'9
+44,4914,252185,Cory Sene,19,Senegal,CB,6'5
+45,5537,252045,Fodé Konaté,19,Mali,RB,5'8
+46,7375,252032,Mouhamed Mbaye,22,Senegal,GK,6'4
+47,7392,252024,Willie Britto,23,Ivory Coast,RB,6'0
+48,7871,251956,Ahmad Toure Ngouyamsa,19,Cameroon,RB,5'9
+49,4774,251916,Pape Ndiaga Yade,20,Senegal,LW,6'1
+50,7374,251905,Maxwell Woledzi,18,Ghana,CB,6'2
+51,6468,251845,Abu Francis,19,Ghana,CM,6'0
+52,3288,251551,Anderson Niangbo,20,Ivory Coast,ST,5'8
+53,7906,251532,Meschack Elia,22,DR Congo,RS,5'8
+54,4485,251385,Stone Mambo,21,DR Congo,LB,6'0
+55,7916,251381,Philippe Paulin Keny,21,Senegal,RW,6'1
+56,3235,251258,Valentine Ozornwafor,21,Nigeria,CB,6'5
+57,4592,251229,Kelvin Yeboah,20,Ghana,RS,6'0
+58,6542,250991,Leon Bell Bell,23,Cameroon,LM,5'11
+59,5358,250835,Marius Noubissi,23,Cameroon,RS,5'11
+60,8582,248812,Yaw Ackah,21,Ghana,CDM,5'7
+61,7907,248726,Michee Ngalina,20,DR Congo,ST,5'11
+62,4583,248661,Cheikh Niasse,20,Senegal,CDM,6'2
+63,5615,248398,Zourdine Thior,22,Senegal,RW,5'7
+64,2275,248351,Isaac Atanga,20,Ghana,RW,5'8
+65,2421,248174,Nassim Boujellab,21,Morocco,CAM,6'0
+66,3046,248068,Mohamed Sanhaji Brahmi,20,Morocco,LM,5'11
+67,6506,247824,Aboubacar Konté,19,Mali,LM,5'9
+68,3056,247679,Victor Boniface,19,Nigeria,ST,6'0
+69,7367,247668,Konan N'Dri,19,Ivory Coast,RW,5'9
+70,5327,247534,Caleb Zady Sery,20,Ivory Coast,LM,5'10
+71,6912,247213,Sibiry Keita,19,Mali,CAM,5'8
+72,7355,247124,Gideon Mensah,20,Ghana,LB,5'10
+73,6233,247045,Joel Kayamba,28,DR Congo,RW,5'7
+74,4741,247019,Boubakar Kouyaté,23,Mali,CB,6'4
+75,6552,246947,Paul Akouokou,22,Ivory Coast,CM,6'0
+76,2623,246946,Ismaila Coulibaly,19,Mali,CM,6'0
+77,1966,246875,Odilon Kossounou,19,Ivory Coast,CB,6'3
+78,4247,246832,Vakoun Issouf Bayo,23,Ivory Coast,LM,6'1
+79,1738,246764,Mohamed Camara,20,Mali,RDM,5'7
+80,1017,246762,Sekou Koita,20,Mali,RS,5'8
+81,3712,246732,Aké Loba,22,Ivory Coast,LS,5'10
+82,448,246172,Samuel Chukwueze,21,Nigeria,RM,5'8
+83,3828,246124,Nicolas Tié,18,Ivory Coast,GK,6'4
+84,418,245940,Silas Wamangituka,20,DR Congo,LM,6'2
+85,4050,245857,Abass Issah,21,Ghana,ST,5'8
+86,6230,245850,Ibrahim Traoré,31,Ivory Coast,CM,6'1
+87,6949,245652,Makhtar Gueye,22,Senegal,ST,6'5
+88,7929,245628,Abdelkabir Abqar,21,Morocco,CB,6'2
+89,1996,245598,Iddrisu Baba,24,Ghana,CDM,6'1
+90,7441,245550,Sekou Gassama,25,Senegal,ST,6'1
+91,3324,245492,Hicham Boussefiane,22,Morocco,RM,5'9
+92,3099,245277,Kingsley Michael,20,Nigeria,CM,5'9
+93,106,245155,Mohammed Kudus,19,Ghana,LDM,5'10
+94,5896,245022,Nicholas Opoku,22,Ghana,RCB,6'3
+95,2025,245021,Mamadou Loum,23,Senegal,CDM,6'2
+96,6917,245016,Amadou Ciss,20,Senegal,LM,6'1
+97,286,244915,Mohammed Salisu,21,Ghana,CB,6'3
+98,920,244895,Alhassan Yusuf,19,Nigeria,RDM,5'9
+99,3648,244863,Yassine Benrahou,21,Morocco,CAM,5'7
+100,3217,244853,Kamal Sowah,20,Ghana,RM,5'10
+101,7450,244843,William Balikwisha,21,DR Congo,RW,5'8
+102,1076,244749,Nayef Aguerd,24,Morocco,LCB,6'2
+103,5110,244694,Cheikh Tidiane Sabaly,21,Senegal,LW,5'6
+104,5875,244513,Ibrahim Sadiq,20,Ghana,LW,5'6
+105,7948,244454,Dylan Esmel,22,Ivory Coast,LM,5'11
+106,8641,244438,Youba Diarra,21,Mali,CM,5'10
+107,5571,244235,Hilary Gong,21,Nigeria,RM,5'7
+108,7399,244207,Ansou Sow,20,Senegal,RW,5'10
+109,7936,244187,Arial Mendy,25,Senegal,LB,5'11
+110,2096,244042,Moussa Djitté,20,Senegal,ST,5'11
+111,5168,243862,James Igbekeme,24,Nigeria,LM,5'7
+112,2441,243357,Franck Evina,19,Cameroon,LM,5'11
+113,3637,243235,Olivier Mbaizo,22,Cameroon,RB,5'10
+114,2149,243044,Nnamdi Ofoborh,20,Nigeria,CDM,5'9
+115,5319,242744,Afeez Aremu,20,Nigeria,RCM,5'11
+116,1685,242619,Cheick Doucouré,20,Mali,RCM,5'11
+117,6519,242217,Edo Kayembe,22,DR Congo,CDM,5'11
+118,6514,242204,Christian Kouan Oulai,19,Ivory Coast,CDM,5'10
+119,3573,242045,Majeed Ashimeru,22,Ghana,CM,6'0
+120,4911,241858,Axel Bamba,20,Ivory Coast,RCB,6'1
+121,3738,241775,Jawad El Yamiq,28,Morocco,CB,6'4
+122,2436,241771,Anthony Nwakaeme,31,Nigeria,LM,6'1
+123,5142,241741,Anas Ouahim,22,Morocco,RM,5'9
+124,6265,241659,Stephen Odey,22,Nigeria,RS,6'0
+125,8661,241237,Franck Elimane Kanouté,21,Senegal,RCM,6'1
+126,4224,241162,Joseph Paintsil,22,Ghana,LM,5'6
+127,3817,241135,Jamilu Collins,25,Nigeria,LB,6'0
+128,1462,241130,Ignatius Ganago,21,Cameroon,ST,5'9
+129,8669,240967,Joshua Kayode,20,Nigeria,LW,6'3
+130,8657,240914,Emeka Friday Eze,23,Nigeria,ST,6'1
+131,3618,240846,Emmanuel Apeh,23,Nigeria,RS,6'0
+132,823,240787,Hamed Junior Traorè,20,Ivory Coast,CAM,5'10
+133,5898,240752,Over Mandanda,21,DR Congo,GK,5'10
+134,3220,240730,Kévin Zohi,23,Mali,LAM,5'10
+135,6929,240728,Duplexe Tchamba,21,Cameroon,CB,6'3
+136,4003,240658,Sofian Kiyine,22,Morocco,CM,6'0
+137,6257,240351,Samuel Moutoussamy,23,DR Congo,CM,5'9
+138,6217,240257,Cheick Traoré,25,Mali,RB,5'9
+139,1733,240190,Kunde Malong,24,Cameroon,RCM,5'11
+140,5892,240120,Mohamed Ezzarfani,22,Morocco,LM,5'9
+141,5364,240064,Ousseynou Ba,24,Senegal,LCB,6'4
+142,5960,239907,Raphael Dwamena,24,Ghana,ST,6'1
+143,8688,239894,Rominigue Kouamé,23,Mali,CM,5'10
+144,7034,239835,Victor Mpindi Ekani,23,Cameroon,RDM,6'3
+145,3955,239795,Caleb Ekuban,26,Ghana,ST,6'0
+146,5171,239646,Jonah Osabutey,21,Ghana,ST,5'11
+147,1349,239529,Frank Onyeka,22,Nigeria,LCM,6'0
+148,8673,239363,Kouadio-Yves Dabila,23,Ivory Coast,RCB,6'0
+149,6599,239215,Kelechi Nwakali,22,Nigeria,CM,5'11
+150,7476,239210,Félix Eboa Eboa,23,Cameroon,CB,6'1
+151,8004,239120,Francis Uzoho,19,Nigeria,GK,6'5
+152,3957,239073,Christopher Antwi-Adjej,26,Ghana,LM,5'8
+153,5598,239049,Okechukwu Azubuike,23,Nigeria,CDM,5'7
+154,547,239025,Ibrahima Niane,21,Senegal,ST,6'2
+155,731,239015,Emmanuel Dennis,22,Nigeria,ST,5'9
+156,4532,238569,Kingsley Schindler,26,Ghana,RM,5'11
+157,4493,238504,Amine Bassi,22,Morocco,CAM,5'8
+158,4100,238490,Ilias Chair,22,Morocco,LM,5'7
+159,1007,238463,Amadou Haidara,22,Mali,CM,5'9
+160,1712,238346,Hamza Mendyl,22,Morocco,LB,5'10
+161,4355,238282,Mamadou Coulibaly,21,Senegal,CM,6'0
+162,375,238227,Krépin Diatta,21,Senegal,RW,5'9
+163,2105,238062,Beni Baningime,21,DR Congo,CDM,5'10
+164,1304,238050,Chidera Ejuke,22,Nigeria,LW,5'9
+165,2909,237700,Tosin Kehinde,22,Nigeria,LM,5'10
+166,4010,237626,Yvan Neyou,23,Cameroon,CM,5'11
+167,5966,237574,Samuel Tetteh,23,Ghana,LW,5'11
+168,415,237560,Moussa Djenepo,22,Mali,LM,5'10
+169,1952,237556,Christian Luyindama,26,DR Congo,LCB,6'3
+170,3107,237469,Nouhou Tolo,23,Cameroon,LB,5'10
+171,3462,237456,Lumor Agbenyenu,23,Ghana,LB,5'9
+172,4814,237214,Lalas Abubakar,25,Ghana,RCB,6'0
+173,1420,237207,Samuel Kalu,22,Nigeria,LM,5'10
+174,1427,237156,Moussa Wagué,21,Senegal,RB,5'10
+175,6623,237155,Silas Gnaka,21,Ivory Coast,LB,5'10
+176,2002,237153,Latif Blessing,23,Ghana,RCM,5'5
+177,4216,237077,Frank Boya,24,Cameroon,CDM,6'5
+178,2246,236944,Fousseni Diabaté,24,Mali,LM,5'9
+179,3638,236836,Orji Okwonkwo,22,Nigeria,LM,5'8
+180,2621,236817,Habib Maïga,24,Ivory Coast,CDM,5'11
+181,5184,236690,Michael Ngadeu,29,Cameroon,RCB,6'3
+182,5922,236629,Christopher Operi,23,Ivory Coast,LB,6'0
+183,7018,236556,Martin Hongla,22,Cameroon,CDM,6'0
+184,682,236480,Yves Bissouma,23,Mali,RCM,6'0
+185,6316,236454,Souleyman Doumbia,23,Ivory Coast,LB,5'9
+186,402,236401,Noussair Mazraoui,22,Morocco,RB,6'0
+187,5930,236377,Emeka Obi,19,Nigeria,CB,6'5
+188,6283,236288,Ifeanyi Mathew,22,Nigeria,RDM,5'8
+189,3578,235996,Nicolas Moumi Ngamaleu,25,Cameroon,LM,6'0
+190,1054,235866,Christian Kouamé,22,Ivory Coast,LS,6'1
+191,3870,235849,Mamadou Fofana,22,Mali,CDM,6'1
+192,3832,235662,Abdul Mumin,22,Ghana,CB,6'2
+193,2113,235634,Ghislain Konan,24,Ivory Coast,LB,5'9
+194,2658,235458,Cédric Kipré,23,Ivory Coast,CB,6'4
+195,1549,235424,Diadie Samassékou,24,Mali,CDM,5'9
+196,906,235410,Youssef En-Nesyri,23,Morocco,ST,6'2
+197,76,235212,Achraf Hakimi,21,Morocco,RM,5'11
+198,517,235173,Ibrahim Sangaré,22,Ivory Coast,CDM,6'3
+199,1518,235161,Josh Maja,21,Nigeria,ST,5'11
+200,4826,235103,Nana Ampomah,24,Ghana,LM,5'9
+201,7508,234916,Samuel Owusu,24,Ghana,LM,5'6
+202,3649,234824,Yoane Wissa,23,DR Congo,LM,5'9
+203,2323,234789,Yan Brice Eteki,22,Cameroon,CDM,6'0
+204,5380,234787,Bernard Tekpetey,21,Ghana,RM,5'8
+205,5953,234740,Mo El Hankouri,23,Morocco,LM,5'9
+206,1594,234725,Idrissa Doumbia,22,Ivory Coast,CDM,6'2
+207,3846,234710,Didier Lamkel Zé,23,Cameroon,LM,6'4
+208,165,234642,Édouard Mendy,28,Senegal,GK,6'6
+209,1825,234457,Oghenekaro Etebo,24,Nigeria,CM,5'9
+210,4615,234241,Beryly Lubala,22,DR Congo,LM,5'10
+211,675,234045,Henry Onyekuru,23,Nigeria,LW,5'9
+212,7464,233938,David Kasumu,20,Nigeria,LCM,5'11
+213,7497,233897,Mamadou Fall,28,Senegal,RM,6'0
+214,6641,233840,Eboue Kouassi,22,Ivory Coast,CDM,6'1
+215,2164,233732,David Okereke,22,Nigeria,ST,5'11
+216,3116,233730,Yakou Méïté,24,Ivory Coast,ST,6'1
+217,1639,233631,Amath Ndiaye,23,Senegal,LM,5'8
+218,3636,233472,Noah Joel Sarenren Bazee,23,Nigeria,RM,6'0
+219,5196,233373,Stéphane Diarra,21,Ivory Coast,RM,5'8
+220,6638,233121,Cheick Timite,22,Ivory Coast,ST,5'10
+221,3233,233048,Tom Dele-Bashiru,19,Nigeria,CM,6'0
+222,1949,232693,Chidozie Awaziem,23,Nigeria,LCB,6'2
+223,8060,232396,Collins Tanor,21,Ghana,CM,5'9
+224,6996,232296,Fahd Moufi,23,Morocco,RB,5'10
+225,103,232293,Victor Osimhen,21,Nigeria,ST,6'1
+226,5923,232183,Collins Fai,27,Cameroon,RB,5'5
+227,590,232097,Amine Harit,23,Morocco,CAM,5'11
+228,8089,231917,Moustapha Seck,24,Senegal,LB,5'9
+229,4370,231627,Umar Sadiq,21,Nigeria,LS,6'4
+230,3399,231344,Moussa Koné,23,Senegal,ST,5'10
+231,8075,231267,Jason Lokilo,21,DR Congo,RM,5'9
+232,3086,231138,Christian Bassogog,24,Cameroon,ST,5'8
+233,8058,231098,Charles Traoré,28,Mali,LB,5'11
+234,2495,231044,Joe Aribo,23,Nigeria,CM,6'0
+235,6273,231005,Chiedozie Ogbene,23,Nigeria,RM,5'9
+236,4654,230995,Sidy Sarr,24,Senegal,CDM,6'5
+237,4783,230972,Adriel D'Avila Ba Loua,23,Ivory Coast,RW,5'7
+238,484,230938,Franck Yannick Kessié,23,Ivory Coast,LCM,6'0
+239,4522,230835,Jean Armel Drolè,22,Ivory Coast,RM,6'1
+240,471,230147,Falaye Sacko,25,Mali,RB,5'10
+241,4789,230144,Assane Dioussé,22,Senegal,CM,5'9
+242,7551,230107,Lassana Coulibaly,24,Mali,CDM,6'0
+243,2866,230042,Youssef Aït Bennasser,23,Morocco,CM,6'0
+244,1786,230021,Joseph Aidoo,24,Ghana,RCB,5'11
+245,8072,230015,Ibrahim Diallo,22,Mali,CB,5'9
+246,2403,229793,Benjamin Tetteh,22,Ghana,ST,6'4
+247,3841,229745,Bright Enobakhare,22,Nigeria,CAM,5'10
+248,3042,229641,Mamadou Bagayoko,29,Ivory Coast,RB,5'9
+249,5672,229606,Victorien Angban,23,Ivory Coast,CM,5'11
+250,6325,229217,Yaw Yeboah,23,Ghana,RM,5'9
+251,7037,229092,Aminu Umar,25,Nigeria,LM,5'9
+252,4652,229010,Selim Amallah,23,Morocco,CAM,6'1
+253,2624,228827,Jeando Fuchs,22,Cameroon,CM,5'9
+254,6000,228810,Joseph Amoah,25,Ghana,CM,5'10
+255,274,228747,Oussama Idrissi,24,Morocco,LW,5'9
+256,3665,228732,Harold Moukoudi,22,Cameroon,CB,6'3
+257,8147,228388,Mamadou Thiam,24,Senegal,LM,5'11
+258,1552,228386,Pape Abou Cissé,24,Senegal,CB,6'6
+259,4402,228357,Kévin Soni,22,Cameroon,CAM,6'0
+260,2907,228236,Simon Deli,28,Ivory Coast,CB,6'4
+261,7529,227998,Dominique Badji,27,Senegal,ST,6'0
+262,6286,227939,Jean Evrard Kouassi,25,Ivory Coast,LM,5'9
+263,1547,227884,Bright Osayi-Samuel,22,Nigeria,RM,5'11
+264,4001,227642,Samuel Adegbenro,24,Nigeria,LW,5'10
+265,3886,227638,Suleiman Abdullahi,23,Nigeria,LS,6'1
+266,617,227536,Moussa Marega,29,Mali,RS,6'1
+267,772,227236,André-Franck Zambo Anguissa,24,Cameroon,LCM,6'0
+268,6027,226861,Sada Thioub,25,Senegal,RM,5'10
+269,240,226790,Wilfred Ndidi,23,Nigeria,CDM,6'0
+270,452,226753,André Onana,24,Cameroon,GK,6'3
+271,5987,226705,David Atanga,23,Ghana,RM,5'11
+272,6304,226249,Moses Odjer,22,Ghana,CM,5'7
+273,226,226110,Nicolas Pépé,25,Ivory Coast,ST,6'0
+274,2784,226060,Roger Assalé,26,Ivory Coast,ST,5'6
+275,7043,225956,Babajide David Akintola,24,Nigeria,RW,5'10
+276,988,225719,Kelechi Iheanacho,23,Nigeria,ST,6'1
+277,4786,225699,Anuar Mohamed Tuhami,25,Morocco,CDM,5'8
+278,3677,225673,Kasim Adams Nuhu,25,Ghana,CB,6'3
+279,447,225508,Eric Bailly,26,Ivory Coast,CB,6'1
+280,7579,225368,Babacar Gueye,25,Senegal,ST,6'4
+281,664,225293,Habib Diallo,25,Senegal,ST,6'1
+282,3475,225151,Adama Traoré,25,Mali,LDM,5'11
+283,5421,225114,Mimoun Mahi,26,Morocco,ST,6'2
+284,7045,224875,Bonke Innocent,24,Nigeria,CDM,5'10
+285,3109,224739,Peter Olayinka,24,Nigeria,LM,6'2
+286,937,224656,Ola Aina,23,Nigeria,LM,6'0
+287,798,224540,Emmanuel Boateng,24,Ghana,ST,5'9
+288,445,224422,Jérémie Boga,23,Ivory Coast,LM,5'9
+289,7080,224368,Moussa Doumbia,25,Mali,LM,5'8
+290,4839,224213,Tyronne Ebuehi,24,Nigeria,RB,6'2
+291,1149,224158,Sofyan Amrabat,23,Morocco,CM,6'1
+292,5673,224108,Viv Solomon-Otabor,24,Nigeria,RM,5'9
+293,1028,224069,Karl Toko-Ekambi,27,Cameroon,ST,6'1
+294,3314,223941,David Tutonda,24,DR Congo,LWB,5'11
+295,7081,223573,Munir Mohand Mohamedi,31,Morocco,GK,6'3
+296,4663,223357,Wilfrid Kaptoum,23,Cameroon,CM,5'9
+297,5689,223283,Famara Diedhiou,27,Senegal,ST,6'2
+298,4647,222840,Racine Coly,24,Senegal,LB,6'1
+299,7582,222825,Chadrac Akolo,25,DR Congo,RM,5'8
+300,2375,222634,Isaac Success,24,Nigeria,ST,6'0
+301,2200,222457,Bernard Mensah,25,Ghana,CAM,5'11
+302,4525,222391,Joseph Minala,23,Cameroon,CM,6'0
+303,4796,222262,Cyriel Dessers,25,Nigeria,ST,6'1
+304,861,222160,Youssouf Koné,24,Mali,LWB,5'9
+305,5240,221793,Patrick Twumasi,26,Ghana,LM,5'9
+306,5401,221695,Godfred Donsah,24,Ghana,CM,5'9
+307,7633,221641,Wilfried Kanon,26,Ivory Coast,LCB,6'2
+308,1805,221323,Jérôme Onguéné,22,Cameroon,CB,6'1
+309,5211,221197,Fred Onyedinma,23,Nigeria,LW,6'1
+310,3239,221000,Badou Ndiaye,29,Senegal,CM,5'11
+311,7100,220965,Anas Tahiri,25,Morocco,LCM,5'10
+312,6690,220921,Anderson Esiti,26,Nigeria,CDM,6'2
+313,4808,220905,Jean-Eudes Aholou,26,Ivory Coast,CDM,6'2
+314,3849,220491,Emmanuel Gyasi,26,Ghana,LW,5'11
+315,5253,220388,Sofian Chakla,26,Morocco,CB,6'1
+316,2858,220131,Mbaye Diagne,28,Senegal,ST,6'3
+317,5682,220064,Clifford Aboagye,25,Ghana,CM,5'5
+318,744,219789,Hamari Traoré,28,Mali,RB,5'9
+319,5687,219779,Ebenezer Assifuah,26,Ghana,LS,5'9
+320,7120,219510,Ebenezer Ofori,25,Ghana,CDM,5'8
+321,2862,219496,Simeon Tochukwu Nwankwo,28,Nigeria,RS,6'6
+322,3699,218971,Sylvain Gbohouo,31,Ivory Coast,GK,6'3
+323,5210,218970,Firmin Mubele,26,DR Congo,ST,5'9
+324,7099,218540,Ambroise Oyongo,29,Cameroon,LB,5'9
+325,6686,217620,Abdoulaye Seck,28,Senegal,RCB,6'4
+326,4970,217606,Emmanuel Boateng,26,Ghana,LM,5'6
+327,2311,217007,Mame Thiam,27,Senegal,ST,6'1
+328,1282,216820,Moses Simon,24,Nigeria,LM,5'6
+329,4837,216483,Tariqe Fosu,24,Ghana,LW,5'8
+330,5691,216463,Hamza Sakhi,24,Morocco,CAM,5'9
+331,1695,216451,Jean Michaël Seri,28,Ivory Coast,CM,5'7
+332,1776,216320,Seko Fofana,25,Ivory Coast,RCM,6'0
+333,2146,216247,Marcel Tisserand,27,DR Congo,CB,6'3
+334,473,215798,Maxwel Cornet,23,Ivory Coast,RW,5'10
+335,766,215785,Keita Baldé,25,Senegal,ST,5'11
+336,4309,215699,Youssouf Sabaly,27,Senegal,RB,5'8
+337,389,214947,Jean-Philippe Gbamin,24,Ivory Coast,CDM,6'1
+338,3565,213949,Kwasi Okyere Wriedt,25,Ghana,ST,6'2
+339,4395,213868,Jean-Charles Castelletto,25,Cameroon,CB,6'1
+340,2357,213761,Abderrazak Hamdallah,29,Morocco,ST,5'10
+341,662,213655,Alex Iwobi,24,Nigeria,LM,6'1
+342,3283,213414,William Troost-Ekong,26,Nigeria,CB,6'3
+343,7596,213089,Godsway Donyoh,25,Ghana,ST,5'10
+344,1460,213013,Frank Acheampong,26,Ghana,LW,5'6
+345,1226,212883,Daniel Amartey,25,Ghana,RB,6'1
+346,8197,212790,Jamal Thiaré,27,Senegal,ST,5'11
+347,6693,212518,Badra Ali Sangaré,34,Ivory Coast,GK,5'11
+348,1178,212491,Arthur Masuaku,26,DR Congo,LB,5'10
+349,1123,212455,Hachim Mastour,18,Morocco,CAM,5'9
+350,8172,212428,Adama Niane,27,Mali,ST,6'0
+351,3792,212420,Mouhamadou-Naby Sarr,26,Senegal,CB,6'5
+352,2389,212382,Paul Ebere Onuachu,26,Nigeria,ST,6'7
+353,7109,212273,Clinton Njie,25,Cameroon,LW,5'9
+354,7673,212158,Osayamen Osawe,26,Nigeria,ST,5'11
+355,2539,211856,Kevin Akpoguma,25,Nigeria,CB,6'4
+356,963,211381,Sofiane Boufal,26,Morocco,LM,5'9
+357,4538,211321,Moussa Konaté,27,Senegal,LS,6'0
+358,3009,211231,Ramón Azeez,27,Nigeria,RDM,5'7
+359,3273,211099,Opa Nguette,25,Senegal,LW,6'0
+360,5065,211048,Olarenwaju Kayode,27,Nigeria,ST,5'9
+361,1654,210897,Chancel Mbemba,25,DR Congo,RCB,6'0
+362,5694,210320,Ibrahima Mbaye,25,Senegal,RB,6'2
+363,164,209989,Thomas Partey,27,Ghana,CM,6'1
+364,4643,209984,Mikel Agu,27,Nigeria,CDM,6'1
+365,2064,209981,Yassine Bounou,29,Morocco,GK,6'4
+366,1772,209973,Jean-Pierre Nsame,27,Cameroon,LS,6'2
+367,1526,209620,Abdul Rahman Baba,25,Ghana,LB,5'11
+368,291,208722,Sadio Mané,28,Senegal,LW,5'9
+369,265,208670,Hakim Ziyech,27,Morocco,CAM,5'11
+370,5202,208535,Alfred Duncan,27,Ghana,CM,5'10
+371,4540,208339,Oumar Niasse,29,Senegal,ST,6'0
+372,1418,208295,Romain Saïss,30,Morocco,LCB,6'2
+373,5026,208052,Andy Yiadom,28,Ghana,RB,5'11
+374,4414,208045,Oussama Tannane,26,Morocco,CAM,5'10
+375,5213,208022,Imoh Ezekiel,26,Nigeria,ST,5'10
+376,2426,207952,Semi Ajayi,26,Nigeria,RCB,6'4
+377,4397,207872,Jordan Botaka,27,DR Congo,RM,6'0
+378,4701,207624,Kenneth Omeruo,26,Nigeria,CB,6'1
+379,6364,207507,Leke James,27,Nigeria,ST,6'2
+380,4310,206493,Yunis Abdelhamid,32,Morocco,LCB,6'3
+381,6361,206141,Kalifa Coulibaly,28,Mali,ST,6'6
+382,1781,205601,Christian Atsu,28,Ghana,LM,5'5
+383,6735,205559,Nouha Dicko,27,Mali,ST,5'8
+384,1578,205343,Jean-Daniel Akpa Akpro,27,Ivory Coast,CM,5'11
+385,5237,205243,Molla Wagué,29,Mali,LCB,6'3
+386,8277,205188,Rachid Alioui,28,Morocco,ST,6'1
+387,6346,205083,Fayçal Fajr,31,Morocco,LDM,5'10
+388,4372,204826,Abdoulaye Ba,29,Senegal,CB,6'6
+389,6339,204438,Clément Diop,26,Senegal,GK,6'1
+390,4727,204102,Yassin Ayoub,26,Morocco,LCM,5'9
+391,627,204077,M'Baye Niang,25,Senegal,ST,6'2
+392,8259,203884,Koffi Djidji,27,Ivory Coast,CB,6'0
+393,8283,203736,Stéphane Bahoken,28,Cameroon,ST,6'1
+394,8249,203435,Ismaël Diomandé,27,Ivory Coast,RDM,6'0
+395,5205,203304,Britt Assombalonga,27,DR Congo,LS,5'10
+396,2148,202940,Neeskens Kebano,28,DR Congo,RM,5'7
+397,904,202934,Ogenyi Onazi,26,Nigeria,CDM,5'8
+398,2339,202330,Abdoulay Diaby,29,Mali,RM,5'8
+399,2760,202052,Benik Afobe,27,DR Congo,ST,6'0
+400,1026,201976,Alfred Gomis,26,Senegal,GK,6'5
+401,1664,201956,Salif Sané,29,Senegal,CB,6'5
+402,3395,201955,Massadio Haïdara,27,Mali,LWB,5'10
+403,2065,201818,Ahmed Musa,27,Nigeria,LM,5'7
+404,3275,201533,Paul-Georges Ntep,27,Cameroon,LM,5'11
+405,5755,201514,Elias Kachunga,28,DR Congo,RM,5'10
+406,8291,201223,Afriyie Acquah,28,Ghana,LDM,5'10
+407,535,201024,Kalidou Koulibaly,29,Senegal,LCB,6'2
+408,4847,200773,Alhassan Wakaso,28,Ghana,CDM,5'10
+409,2773,200759,Jeffrey Schlupp,27,Ghana,LM,5'10
+410,6804,200275,Youness Mokhtar,28,Morocco,LM,5'10
+411,7170,199835,Emmanuel Emenike,30,Nigeria,ST,6'0
+412,6805,199800,Zakarya Bergdich,31,Morocco,LB,5'10
+413,8290,199313,Abdoulaye Bamba,30,Ivory Coast,RB,6'0
+414,6772,199074,Lacina Traoré,28,Ivory Coast,ST,6'8
+415,1284,199069,Vincent Aboubakar,28,Cameroon,ST,6'0
+416,6424,198970,Jonathan Mensah,29,Ghana,RCB,6'2
+417,1144,198951,Cédric Bakambu,29,DR Congo,LS,6'0
+418,390,198717,Wilfried Zaha,27,Ivory Coast,RW,5'11
+419,1543,198640,Zakaria Labyad,27,Morocco,CF,5'9
+420,6750,198554,Anthony Ujah,29,Nigeria,ST,5'11
+421,4406,198420,Majeed Waris,28,Ghana,RAM,5'8
+422,7735,198220,Mehdi Bourabia,28,Morocco,CM,6'0
+423,8332,197937,Papy Djilobodji,31,Senegal,CB,6'4
+424,809,197853,Serge Aurier,27,Ivory Coast,RB,5'9
+425,2461,197756,Jordan Ayew,28,Ghana,RS,6'0
+426,5459,197681,Giannelli Imbula,26,DR Congo,CM,6'1
+427,3680,197231,Khouma Babacar,27,Senegal,ST,6'1
+428,1117,197061,Joel Matip,28,Cameroon,CB,6'4
+429,5030,195698,Cheick Doukouré,27,Ivory Coast,CDM,5'11
+430,2961,194209,Youssef El Arabi,33,Morocco,ST,6'0
+431,6126,193949,Magaye Gueye,25,Senegal,ST,5'10
+432,2356,193738,Younès Belhanda,30,Morocco,LCM,5'10
+433,789,193474,Idrissa Gueye,30,Senegal,RCM,5'9
+434,4151,193337,Joel Obi,29,Nigeria,LDM,5'9
+435,5748,193278,Chris Mavinga,29,DR Congo,LCB,6'1
+436,2161,192667,Allan Nyom,32,Cameroon,RM,6'2
+437,7169,192575,Emmanuel Badu,29,Ghana,CM,5'8
+438,5039,191390,Fabrice N'Sakala,29,DR Congo,LB,5'10
+439,4889,191151,Samba Sow,31,Mali,LDM,6'1
+440,3500,191135,Lago Júnior,29,Ivory Coast,RM,5'11
+441,7230,190494,Daniel Opare,29,Ghana,RB,5'9
+442,3423,190490,Mathis Bolly,29,Ivory Coast,RM,6'1
+443,7708,190445,Emmanuel Frimpong,24,Ghana,CM,5'11
+444,6775,190195,Mamadou Samassa,30,Mali,GK,6'6
+445,1943,189963,Wilfried Bony,31,Ivory Coast,ST,6'0
+446,6760,189514,Harrison Afful,34,Ghana,RB,5'6
+447,985,189157,Yannick Bolasie,31,DR Congo,LW,6'1
+448,6094,188879,Alfred N'Diaye,30,Senegal,CDM,6'2
+449,2085,188829,Nicolas Nkoulou,30,Cameroon,RCB,6'0
+450,5099,188428,Seydou Doumbia,31,Ivory Coast,RS,5'10
+451,3425,188337,Mubarak Wakaso,29,Ghana,CM,5'7
+452,4036,188182,Leon Balogun,32,Nigeria,CB,6'3
+453,4444,187084,Mame Diouf,32,Senegal,ST,6'1
+454,1531,186832,Kwadwo Asamoah,31,Ghana,LM,5'8
+455,3483,186801,Cheikhou Kouyaté,30,Senegal,RCB,6'2
+456,5261,186783,Albert Adomah,32,Ghana,RM,6'1
+457,1955,186197,Gaël Kakuta,29,DR Congo,CAM,5'8
+458,1086,185195,Odion Ighalo,31,Nigeria,ST,6'0
+459,5762,184873,Ismaël Traoré,33,Ivory Coast,RCB,6'0
+460,8357,184852,Assani Lukimya,34,DR Congo,RCB,6'3
+461,6780,184089,Mehdi Carcela-González,31,Morocco,RW,5'9
+462,5775,184082,Lamine Koné,31,Ivory Coast,LCB,6'2
+463,8376,183975,Jean-Armel Kana-Biyik,30,Cameroon,RCB,6'0
+464,39,183569,Eric Maxim Choupo-Moting,31,Cameroon,LW,6'3
+465,7236,183389,Giovanni Sio,31,Ivory Coast,RM,5'11
+466,7715,183382,Georges Mandjeck,31,Cameroon,CDM,6'1
+467,6393,183284,Aurélien Chedjou,35,Cameroon,LCB,6'0
+468,3003,183256,Henri Saivet,29,Senegal,CAM,5'9
+469,2598,183108,Nordin Amrabat,33,Morocco,RM,5'11
+470,3189,182945,Max-Alain Gradel,32,Ivory Coast,LW,5'10
+471,5286,182837,Kazenga LuaLua,29,DR Congo,ST,5'11
+472,1559,179605,Adel Taarabt,31,Morocco,CM,6'1
+473,4166,178250,Papakouli Diop,34,Senegal,LDM,5'10
+474,4686,177766,Gaëtan Bong,32,Cameroon,LB,6'2
+475,1922,177765,Papiss Demba Cissé,34,Senegal,ST,6'0
+476,5477,177525,Nabil Dirar,34,Morocco,RM,6'2
+477,4567,177509,Medhi Benatia,31,Morocco,CB,6'2
+478,2412,177392,Dieumerci Mbokani,34,DR Congo,ST,6'1
+479,3246,177134,Demba Ba,35,Senegal,ST,6'2
+480,2399,176571,André Ayew,30,Ghana,RS,5'9
+481,1445,173909,Kevin-Prince Boateng,33,Ghana,CF,6'1
+482,6442,173530,Sone Aluko,31,Nigeria,RM,5'8
+483,1246,172962,Victor Moses,29,Nigeria,RM,5'10
+484,6833,172425,Souleymane Bamba,35,Ivory Coast,CB,6'3
+485,2489,170733,Gervais Yao Kouassi,33,Ivory Coast,LW,5'10
+486,4457,164959,Stéphane M'Bia,34,Cameroon,CB,6'2
+487,3061,164477,John Obi Mikel,33,Nigeria,CDM,6'2
+488,4171,158232,Salomon Kalou,33,Ivory Coast,LM,6'1
+489,4672,157503,Alexandre Song,31,Cameroon,CDM,6'1
+490,7239,156623,Ibrahim Sissoko,28,Ivory Coast,RM,5'10
+491,5511,150597,Junior Moukoko,23,DR Congo,,5'11
+492,1760,137494,Obafemi Martins,35,Nigeria,ST,5'7
+493,4852,122849,Arouna Koné,36,Ivory Coast,ST,5'11
+494,5797,45674,Michaël Essien,33,Ghana,CDM,5'10
+495,4139,31432,Didier Drogba,38,Ivory Coast,,6'2
+496,2911,20289,Yaya Touré,35,Ivory Coast,CM,6'3
+497,2424,9676,Samuel Eto'o,36,Cameroon,ST,5'10

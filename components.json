@@ -18,5 +18,9 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "registries": { "@tailark": "https://tailark.com/r/{name}.json" }
+  "registries": {
+    "@tailark": "https://tailark.com/r/{name}.json",
+    "@aceternity": "https://ui.aceternity.com/registry/{name}.json",
+    "@kokonutui": "https://kokonutui.com/r/{name}.json"
+  }
 }

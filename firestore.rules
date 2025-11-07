@@ -1,0 +1,85 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      return isAuthenticated() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    function isRepresentative() {
+      return isAuthenticated() && 
+             get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'representative';
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+    
+    // Users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && isOwner(userId);
+      allow update: if isAdmin() || isOwner(userId);
+      allow delete: if isAdmin();
+    }
+    
+    // Federations collection
+    match /federations/{federationId} {
+      allow read: if true; // Public read for bracket display
+      allow create: if isAuthenticated();
+      allow update: if isAdmin() || isAuthenticated();
+      allow delete: if isAdmin();
+      
+      // Players subcollection under federations
+      match /players/{playerId} {
+        allow read: if true; // Public read for squad display
+        allow create: if isAuthenticated(); // Allow representatives to add players
+        allow update: if isAdmin() || isAuthenticated();
+        allow delete: if isAdmin() || isAuthenticated();
+      }
+    }
+    
+    // Tournament collection (single document)
+    match /tournament/{tournamentId} {
+      allow read: if true; // Public read for bracket display
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Tournaments collection (multiple documents)
+    match /tournaments/{tournamentId} {
+      allow read: if true; // Public read for historical tournaments
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Matches collection
+    match /matches/{matchId} {
+      allow read: if true; // Public read for results and leaderboard
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+    
+    // Players collection
+    match /players/{playerId} {
+      allow read: if true; // Public read for player pool selection
+      allow write: if true; // Allow imports and updates (temp for development)
+    }
+    
+    // Countries collection
+    match /countries/{countryId} {
+      allow read: if true; // Public read for country metadata
+      allow write: if true; // Allow imports and updates (temp for development)
+    }
+  }
+}
