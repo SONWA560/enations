@@ -30,10 +30,22 @@ interface Match {
   venue?: string;
 }
 
+interface TournamentData {
+  id: string;
+  status?: string;
+  currentRound?: string;
+  bracket?: {
+    quarterFinals?: any[];
+    semiFinals?: any[];
+    final?: any;
+  };
+  [key: string]: any;
+}
+
 export default function BracketPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [tournament, setTournament] = useState<any>(null);
+  const [tournament, setTournament] = useState<TournamentData | null>(null);
   const [bracket, setBracket] = useState<any>(null);
 
   useEffect(() => {
@@ -60,7 +72,7 @@ export default function BracketPage() {
         return;
       }
 
-      const tournamentData = { id: tournamentDoc.id, ...tournamentDoc.data() };
+      const tournamentData: TournamentData = { id: tournamentDoc.id, ...tournamentDoc.data() };
       setTournament(tournamentData);
 
       // The bracket is stored directly in the tournament document
