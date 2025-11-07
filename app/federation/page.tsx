@@ -67,7 +67,7 @@ export default function FederationPage() {
         // Fetch players from subcollection
         const playersRef = collection(db, `federations/${federationId}/players`);
         const playersSnapshot = await getDocs(playersRef);
-        const players = playersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const players = playersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as any[];
         
         setFederation({
           ...federationData,
