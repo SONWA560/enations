@@ -1,10 +1,7 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-// Lazy initialization of Resend client to avoid build-time errors
-function getResendClient() {
-  return new Resend(process.env.RESEND_API_KEY);
-}
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
@@ -98,9 +95,6 @@ export async function POST(request: Request) {
         </body>
       </html>
     `;
-
-    // Initialize Resend client only when needed
-    const resend = getResendClient();
 
     // Send emails to both teams
     const emailPromises = [
