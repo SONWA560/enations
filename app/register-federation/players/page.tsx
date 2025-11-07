@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -37,7 +37,7 @@ interface Player {
   };
 }
 
-export default function PlayersPage() {
+function PlayersPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const federationId = searchParams.get('federationId');
@@ -311,5 +311,13 @@ export default function PlayersPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function PlayersPage() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <PlayersPageContent />
+    </Suspense>
   );
 }
