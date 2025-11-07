@@ -115,14 +115,8 @@ function AnimatedGroup({
   const containerVariants = variants?.container || selectedVariants.container;
   const itemVariants = variants?.item || selectedVariants.item;
 
-  const MotionComponent = React.useMemo(
-    () => motion.create(as as string),
-    [as]
-  );
-  const MotionChild = React.useMemo(
-    () => motion.create(asChild as string),
-    [asChild]
-  );
+  const MotionComponent = motion[as as keyof typeof motion] as any;
+  const MotionChild = motion[asChild as keyof typeof motion] as any;
 
   return (
     <MotionComponent

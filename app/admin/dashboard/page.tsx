@@ -117,7 +117,7 @@ export default function AdminDashboard() {
     
     if (playersSnapshot.size > 0) {
       // Players found in subcollection (new method)
-      players = playersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      players = playersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })) as any[];
     } else if (teamData.players && Array.isArray(teamData.players) && teamData.players.length > 0) {
       // Fallback to players array in main document (old method for legacy data)
       players = teamData.players;
