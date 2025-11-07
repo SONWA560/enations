@@ -92,10 +92,10 @@ export function generatePlayerRatings(naturalPosition: 'GK' | 'DF' | 'MD' | 'AT'
   
   positions.forEach(pos => {
     if (pos === naturalPosition) {
-      // Natural position: 50-100
+      // Natural position: 50-100 inclusively
       ratings[pos] = 50 + Math.floor(Math.random() * 51); // 50-100
     } else {
-      // Other positions: 0-50
+      // Other positions: 0-50 inclusively
       ratings[pos] = Math.floor(Math.random() * 51); // 0-50
     }
   });
@@ -127,6 +127,7 @@ export function calculateTeamRating(squad: PlayerData[]): number {
     return sum + getPlayerOverallRating(player);
   }, 0);
   
+  // Return average of all players' ratings for their natural positions
   return Math.round(totalRating / squad.length);
 }
 

@@ -20,6 +20,8 @@ import { Trophy, Users, Calendar, Award, Loader2, Home } from "lucide-react";
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { toast } from "sonner";
+import { HelpTooltip } from "@/components/help-tooltip";
+import { EmptyStateGuide } from "@/components/empty-state-guide";
 
 interface FederationData {
   id: string;
@@ -174,7 +176,10 @@ export default function DashboardPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Squad Size</CardTitle>
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              Squad Size
+              <HelpTooltip content="Select up to 23 players for your squad. Go to 'Manage Federation' to add more players." />
+            </CardTitle>
             <Trophy className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -185,7 +190,10 @@ export default function DashboardPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Matches Played</CardTitle>
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              Matches Played
+              <HelpTooltip content="Total number of tournament matches your federation has participated in." />
+            </CardTitle>
             <Calendar className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
@@ -196,7 +204,10 @@ export default function DashboardPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Team Rating</CardTitle>
+            <CardTitle className="text-sm font-medium flex items-center gap-2">
+              Team Rating
+              <HelpTooltip content="Average rating of all players in your squad. Higher ratings mean better performance." />
+            </CardTitle>
             <Award className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>

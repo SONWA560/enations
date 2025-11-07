@@ -96,9 +96,10 @@ export function GoalScorersLeaderboard({
                 <div className="flex items-center gap-2">
                   <Badge
                     variant={isTopScorer ? "default" : "secondary"}
-                    className="font-bold"
+                    className="font-bold flex items-center gap-1"
                   >
-                    {scorer.goals} ⚽
+                    {scorer.goals}
+                    <Target className="h-3 w-3" />
                   </Badge>
                 </div>
               </div>

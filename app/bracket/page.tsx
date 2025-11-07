@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { TournamentBracket } from "@/components/tournament-bracket";
+import { HelpBanner } from "@/components/help-banner";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { Loader2, Home } from "lucide-react";
@@ -43,6 +45,7 @@ interface TournamentData {
 }
 
 export default function BracketPage() {
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [tournament, setTournament] = useState<TournamentData | null>(null);
@@ -110,9 +113,8 @@ export default function BracketPage() {
   };
 
   const handleMatchClick = (matchId: string) => {
-    // Navigate to match details or open match drawer
-    console.log("Match clicked:", matchId);
-    // TODO: Implement match details view
+    // Navigate to match details page
+    router.push(`/match/${matchId}`);
   };
 
   if (loading) {
@@ -152,6 +154,19 @@ export default function BracketPage() {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
+
+        <div className="mb-6">
+          <HelpBanner
+            storageKey="bracket-help-dismissed"
+            title="How to Use the Tournament Bracket"
+            description="View all tournament matches and results in one place. Click on any match to see detailed commentary and statistics."
+            tips={[
+              "Click on a completed match to view AI-generated commentary and key moments",
+              "Matches update in real-time as the tournament progresses",
+              "Check back regularly to see the latest results and bracket updates"
+            ]}
+          />
+        </div>
 
         <TournamentBracket
           bracket={bracket}

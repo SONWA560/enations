@@ -216,7 +216,9 @@ export function TournamentControlPanel({
         {tournamentComplete && (
           <div className="text-center py-8">
             <Trophy className="h-16 w-16 mx-auto mb-4 text-primary" />
-            <h3 className="text-lg font-semibold mb-2">Tournament Complete! 🎉</h3>
+            <h3 className="text-lg font-semibold mb-2 flex items-center justify-center gap-2">
+              Tournament Complete! <span className="text-2xl">🎉</span>
+            </h3>
             <p className="text-sm text-muted-foreground mb-2">
               All matches have been played
             </p>

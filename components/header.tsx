@@ -82,6 +82,11 @@ export const HeroHeader = () => {
                                     <li key={index}>
                                         <Link
                                             href={item.href}
+                                            data-tour={
+                                                item.name === 'Dashboard' ? 'dashboard-link' :
+                                                item.name === 'Bracket' || item.name === 'Tournament Bracket' ? 'bracket-link' :
+                                                item.name === 'Leaderboard' ? 'leaderboard-link' : undefined
+                                            }
                                             className="text-muted-foreground hover:text-accent-foreground block duration-150">
                                             <span>{item.name}</span>
                                         </Link>

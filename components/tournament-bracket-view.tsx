@@ -154,7 +154,10 @@ export function TournamentBracketView({
         </div>
         {champion && (
           <div className="mt-4 p-4 bg-primary/10 rounded-lg border border-primary/20">
-            <p className="text-sm text-muted-foreground mb-2">🏆 Champion</p>
+            <p className="text-sm text-muted-foreground mb-2 flex items-center justify-center gap-2">
+              <Trophy className="h-4 w-4" />
+              Champion
+            </p>
             <div className="flex items-center justify-center gap-2">
               <Avatar className="h-10 w-10">
                 <AvatarImage src={champion.logo} />

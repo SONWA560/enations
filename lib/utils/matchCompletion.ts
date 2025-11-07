@@ -54,10 +54,42 @@ interface MatchCompletionResult {
  */
 export async function generateMatchCommentary(matchResult: MatchResult): Promise<{
   success: boolean;
-  commentary?: string;
+  commentary?: any; // Changed to any to support structured response
   error?: string;
 }> {
   try {
+    // Transform matchStats to statistics format expected by API
+    const statistics = matchResult.matchStats ? {
+      possession: {
+        home: matchResult.matchStats.possession1 || 50,
+        away: matchResult.matchStats.possession2 || 50,
+      },
+      shots: {
+        home: matchResult.matchStats.shots1 || 0,
+        away: matchResult.matchStats.shots2 || 0,
+      },
+      shotsOnTarget: {
+        home: matchResult.matchStats.shotsOnTarget1 || 0,
+        away: matchResult.matchStats.shotsOnTarget2 || 0,
+      },
+      fouls: {
+        home: matchResult.matchStats.fouls1 || 0,
+        away: matchResult.matchStats.fouls2 || 0,
+      },
+      corners: {
+        home: Math.floor((matchResult.matchStats.shots1 || 0) * 0.3),
+        away: Math.floor((matchResult.matchStats.shots2 || 0) * 0.3),
+      },
+      yellowCards: {
+        home: matchResult.matchStats.yellowCards1 || 0,
+        away: matchResult.matchStats.yellowCards2 || 0,
+      },
+      redCards: {
+        home: matchResult.matchStats.redCards1 || 0,
+        away: matchResult.matchStats.redCards2 || 0,
+      },
+    } : undefined;
+
     const response = await fetch('/api/generate-commentary', {
       method: 'POST',
       headers: {
@@ -70,7 +102,7 @@ export async function generateMatchCommentary(matchResult: MatchResult): Promise
         score2: matchResult.team2.score,
         goalScorers: matchResult.goalScorers,
         matchEvents: matchResult.matchEvents,
-        matchStats: matchResult.matchStats,
+        statistics, // Pass transformed statistics
       }),
     });
 
@@ -87,7 +119,7 @@ export async function generateMatchCommentary(matchResult: MatchResult): Promise
     const data = await response.json();
     return {
       success: data.success,
-      commentary: data.commentary,
+      commentary: data.commentary, // Now returns structured object
     };
   } catch (error: any) {
     console.error('Error calling commentary API:', error);
@@ -108,17 +140,31 @@ export async function sendMatchEmails(matchResult: MatchResult): Promise<{
   error?: string;
 }> {
   try {
-    // TESTING MODE: Override all emails to send to test address
-    const TEST_EMAIL = '4340789@myuwc.ac.za';
+    console.log('🔍 Email sending check:', {
+      team1: {
+        name: matchResult.team1.name,
+        email: matchResult.team1.email,
+        hasEmail: !!matchResult.team1.email
+      },
+      team2: {
+        name: matchResult.team2.name,
+        email: matchResult.team2.email,
+        hasEmail: !!matchResult.team2.email
+      }
+    });
     
     // Skip if no emails provided
     if (!matchResult.team1.email || !matchResult.team2.email) {
-      console.warn('Skipping email notification - team emails not provided');
+      console.warn('⚠️ Skipping email notification - team emails not provided');
+      console.warn('Team 1 email:', matchResult.team1.email);
+      console.warn('Team 2 email:', matchResult.team2.email);
       return {
         success: false,
         error: 'Team emails not provided',
       };
     }
+
+    console.log('✅ Emails found! Proceeding to send emails...');
 
     const response = await fetch('/api/send-match-email', {
       method: 'POST',
@@ -128,28 +174,38 @@ export async function sendMatchEmails(matchResult: MatchResult): Promise<{
       body: JSON.stringify({
         team1Name: matchResult.team1.name,
         team2Name: matchResult.team2.name,
-        team1Email: TEST_EMAIL, // Override for testing
-        team2Email: TEST_EMAIL, // Override for testing
+        team1Email: matchResult.team1.email,
+        team2Email: matchResult.team2.email,
         score1: matchResult.team1.score,
         score2: matchResult.team2.score,
         goalScorers: matchResult.goalScorers,
         matchDate: matchResult.matchDate || new Date().toISOString(),
         tournamentStage: matchResult.tournamentStage,
+        matchStats: matchResult.matchStats,
       }),
     });
 
+    console.log('📡 Email API response status:', response.status);
+
     if (!response.ok) {
-      const error = await response.json();
-      console.error('Email sending failed:', error);
+      let errorMessage = 'Failed to send emails';
+      try {
+        const error = await response.json();
+        console.error('Email sending failed:', error);
+        errorMessage = error.error || error.message || errorMessage;
+      } catch (e) {
+        console.error('Could not parse error response:', await response.text());
+      }
       return {
         success: false,
-        error: error.error || 'Failed to send emails',
+        error: errorMessage,
       };
     }
 
     const data = await response.json();
+    console.log('📧 Email API success response:', data);
     return {
-      success: data.success,
+      success: data.success || true,
       message: data.message,
     };
   } catch (error: any) {
@@ -214,10 +270,12 @@ export async function completeMatch(
 
 /**
  * Simulate match without AI features (faster for testing)
+ * Now includes email notifications
  */
 export async function simulateMatchQuick(matchResult: MatchResult): Promise<{
   success: boolean;
   commentary: string;
+  emailsSent?: boolean;
 }> {
   const winner = matchResult.team1.score > matchResult.team2.score 
     ? matchResult.team1.name 
@@ -225,8 +283,21 @@ export async function simulateMatchQuick(matchResult: MatchResult): Promise<{
   
   const fallbackCommentary = `Match Summary: ${matchResult.team1.name} ${matchResult.team1.score} - ${matchResult.team2.score} ${matchResult.team2.name}. Winner: ${winner}. ${matchResult.goalScorers.length} goals scored.`;
 
+  // Send emails even for quick simulation
+  let emailsSent = false;
+  try {
+    const emailResult = await sendMatchEmails(matchResult);
+    emailsSent = emailResult.success;
+    if (!emailResult.success) {
+      console.error('Email sending failed in quick simulation:', emailResult.error);
+    }
+  } catch (error) {
+    console.error('Error sending emails in quick simulation:', error);
+  }
+
   return {
     success: true,
     commentary: fallbackCommentary,
+    emailsSent,
   };
 }

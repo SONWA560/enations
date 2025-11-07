@@ -142,9 +142,20 @@ export const deleteMatch = async (matchId: string) => {
 
 // Get top goal scorers across all matches
 export const getTopGoalScorers = async (limitCount: number = 10) => {
-  const matchesRef = collection(db, 'matches');
-  const snapshot = await getDocs(matchesRef);
+  // Get the tournament bracket from tournament/current document
+  const tournamentDoc = await getDoc(doc(db, "tournament", "current"));
   
+  if (!tournamentDoc.exists()) {
+    return [];
+  }
+
+  const tournamentData = tournamentDoc.data();
+  const bracket = tournamentData?.bracket;
+
+  if (!bracket) {
+    return [];
+  }
+
   const goalScorers: { 
     [key: string]: { 
       playerId: string;
@@ -156,26 +167,33 @@ export const getTopGoalScorers = async (limitCount: number = 10) => {
     } 
   } = {};
   
-  snapshot.docs.forEach(doc => {
-    const matchData = doc.data();
-    if (matchData.goalScorers && Array.isArray(matchData.goalScorers)) {
-      matchData.goalScorers.forEach((scorer: any) => {
-        const key = `${scorer.playerName}-${scorer.team}`;
-        if (goalScorers[key]) {
-          goalScorers[key].goals += 1;
-        } else {
-          goalScorers[key] = {
-            playerId: scorer.playerId || key, // Use playerId if available, otherwise use the key
-            playerName: scorer.playerName || 'Unknown Player',
-            teamName: scorer.team || 'Unknown Team',
-            country: scorer.team || 'Unknown', // Use team name as country (they're the same in this app)
-            goals: 1,
-            teamLogo: scorer.teamLogo,
-          };
-        }
-      });
-    }
-  });
+  // Helper function to extract scorers from matches
+  const extractScorers = (matches: any[]) => {
+    matches.forEach(match => {
+      if (match.goalScorers && Array.isArray(match.goalScorers)) {
+        match.goalScorers.forEach((scorer: any) => {
+          const key = `${scorer.playerName}-${scorer.team}`;
+          if (goalScorers[key]) {
+            goalScorers[key].goals += 1;
+          } else {
+            goalScorers[key] = {
+              playerId: scorer.playerId || key,
+              playerName: scorer.playerName || 'Unknown Player',
+              teamName: scorer.team || 'Unknown Team',
+              country: scorer.team || 'Unknown',
+              goals: 1,
+              teamLogo: scorer.teamLogo,
+            };
+          }
+        });
+      }
+    });
+  };
+
+  // Extract from all bracket rounds
+  if (bracket.quarterFinals) extractScorers(bracket.quarterFinals);
+  if (bracket.semiFinals) extractScorers(bracket.semiFinals);
+  if (bracket.final) extractScorers([bracket.final]);
   
   return Object.values(goalScorers)
     .sort((a, b) => b.goals - a.goals)

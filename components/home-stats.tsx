@@ -309,7 +309,11 @@ export function HomeStats() {
           ) : (
             <>
               {recentMatches.map((match) => (
-                <div key={match.id} className="space-y-2">
+                <Link 
+                  key={match.id} 
+                  href={`/match/${match.id}`}
+                  className="block space-y-2 hover:bg-muted/50 rounded-md p-2 -m-2 transition-colors cursor-pointer"
+                >
                   <Badge variant="outline" className="text-xs">
                     {match.round}
                   </Badge>
@@ -343,7 +347,7 @@ export function HomeStats() {
                   {match.id !== recentMatches[recentMatches.length - 1].id && (
                     <Separator />
                   )}
-                </div>
+                </Link>
               ))}
               <Button variant="outline" size="sm" asChild className="w-full mt-2">
                 <Link href="/bracket">

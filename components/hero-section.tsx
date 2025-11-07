@@ -1,10 +1,13 @@
+'use client';
+
 import React from 'react'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Shield, Users, LayoutDashboard } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import { HeroHeader } from './header'
+import { useAuth } from '@/contexts/AuthContext'
 
 const transitionVariants = {
     item: {
@@ -27,6 +30,46 @@ const transitionVariants = {
 }
 
 export default function HeroSection() {
+    const { userData, loading } = useAuth();
+
+    // Determine CTA based on user role
+    const getCallToAction = () => {
+        if (loading) {
+            return {
+                badge: { text: 'Loading...', href: '#' },
+                primary: { text: 'Loading...', href: '#', icon: ArrowRight },
+                secondary: { text: 'View Tournament', href: '/bracket' }
+            };
+        }
+
+        if (!userData) {
+            // Not logged in
+            return {
+                badge: { text: 'Register Your Nation Today', href: '/auth' },
+                primary: { text: 'Register Federation', href: '/auth', icon: Users },
+                secondary: { text: 'View Tournament', href: '/bracket' }
+            };
+        }
+
+        if (userData.role === 'admin') {
+            // Admin user
+            return {
+                badge: { text: 'Welcome Back, Admin', href: '/admin/dashboard' },
+                primary: { text: 'Admin Dashboard', href: '/admin/dashboard', icon: Shield },
+                secondary: { text: 'View Tournament', href: '/bracket' }
+            };
+        }
+
+        // Federation representative
+        return {
+            badge: { text: 'Welcome Back to Your Federation', href: '/dashboard' },
+            primary: { text: 'My Dashboard', href: '/dashboard', icon: LayoutDashboard },
+            secondary: { text: 'View Bracket', href: '/bracket' }
+        };
+    };
+
+    const cta = getCallToAction();
+
     return (
         <>
             <HeroHeader />
@@ -42,9 +85,9 @@ export default function HeroSection() {
                             <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                                 <AnimatedGroup variants={transitionVariants}>
                                     <Link
-                                        href="/auth"
+                                        href={cta.badge.href}
                                         className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
-                                        <span className="text-foreground text-sm">Register Your Nation Today</span>
+                                        <span className="text-foreground text-sm">{cta.badge.text}</span>
                                         <span className="dark:border-background block h-4 w-0.5 border-l bg-white dark:bg-zinc-700"></span>
 
                                         <div className="bg-background group-hover:bg-muted size-6 overflow-hidden rounded-full duration-500">
@@ -97,8 +140,9 @@ export default function HeroSection() {
                                             asChild
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
-                                            <Link href="/auth">
-                                                <span className="text-nowrap">Register Federation</span>
+                                            <Link href={cta.primary.href} className="flex items-center gap-2">
+                                                <cta.primary.icon className="h-4 w-4" />
+                                                <span className="text-nowrap">{cta.primary.text}</span>
                                             </Link>
                                         </Button>
                                     </div>
@@ -108,8 +152,8 @@ export default function HeroSection() {
                                         size="lg"
                                         variant="ghost"
                                         className="h-10.5 rounded-xl px-5">
-                                        <Link href="/">
-                                            <span className="text-nowrap">View Tournament</span>
+                                        <Link href={cta.secondary.href}>
+                                            <span className="text-nowrap">{cta.secondary.text}</span>
                                         </Link>
                                     </Button>
                                 </AnimatedGroup>

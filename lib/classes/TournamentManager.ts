@@ -26,6 +26,17 @@ interface BracketMatch {
     team: string;
     minute: number;
   }>;
+  wasPlayed?: boolean; // True if match was played, false if simulated
+  commentary?: any; // Structured AI commentary for played matches
+  statistics?: {
+    possession?: { home: number; away: number };
+    shots?: { home: number; away: number };
+    shotsOnTarget?: { home: number; away: number };
+    fouls?: { home: number; away: number };
+    corners?: { home: number; away: number };
+    yellowCards?: { home: number; away: number };
+    redCards?: { home: number; away: number };
+  };
 }
 
 interface TournamentBracket {
@@ -141,7 +152,18 @@ export class TournamentManager {
     matchId: string,
     homeScore: number,
     awayScore: number,
-    goalScorers?: Array<{ playerName: string; team: string; minute: number }>
+    goalScorers?: Array<{ playerName: string; team: string; minute: number }>,
+    wasPlayed?: boolean,
+    commentary?: any,
+    statistics?: {
+      possession?: { home: number; away: number };
+      shots?: { home: number; away: number };
+      shotsOnTarget?: { home: number; away: number };
+      fouls?: { home: number; away: number };
+      corners?: { home: number; away: number };
+      yellowCards?: { home: number; away: number };
+      redCards?: { home: number; away: number };
+    }
   ): TournamentBracket {
     if (!this.bracket) {
       throw new Error("Tournament not started. Call startTournament() first.");
@@ -170,6 +192,9 @@ export class TournamentManager {
     match.awayScore = awayScore;
     match.winner = homeScore > awayScore ? match.homeTeam : match.awayTeam;
     match.goalScorers = goalScorers || [];
+    match.wasPlayed = wasPlayed ?? false;
+    match.commentary = commentary;
+    match.statistics = statistics;
     match.completed = true;
 
     // Advance winner to next round

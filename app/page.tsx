@@ -1,13 +1,33 @@
+'use client';
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import HeroSection from "@/components/hero-section";
 import { HomeStats } from "@/components/home-stats";
 import { SiteFooter } from "@/components/site-footer";
+import { OnboardingTour } from "@/components/onboarding-tour";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function HomePage() {
+  const { userData } = useAuth();
+
+  // Determine button text and href based on user role
+  const getActionButton = () => {
+    if (!userData) {
+      return { text: 'Get Started', href: '/auth' };
+    }
+    if (userData.role === 'admin') {
+      return { text: 'Admin Dashboard', href: '/admin/dashboard' };
+    }
+    return { text: 'My Dashboard', href: '/dashboard' };
+  };
+
+  const actionButton = getActionButton();
+
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 dark:bg-gray-900">
+      <OnboardingTour page="home" />
       <HeroSection />
       <main className="flex-1 p-6">
         <section className="text-center py-12">
@@ -18,8 +38,8 @@ export default function HomePage() {
             Experience the thrill of African football. Simulate matches, manage
             your federation, and climb to glory.
           </p>
-          <Link href="/auth">
-            <Button className="mt-8">Get Started</Button>
+          <Link href={actionButton.href}>
+            <Button className="mt-8" data-tour="register-button">{actionButton.text}</Button>
           </Link>
         </section>
 

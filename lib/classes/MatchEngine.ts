@@ -153,42 +153,53 @@ export class MatchEngine {
     defenseRating: number,
     isHome: boolean
   ): number {
-    // Base probability
-    let probability = attackRating / 100;
+    // Normalize ratings to 0-1 scale
+    const attackStrength = attackRating / 100;
+    const defenseStrength = defenseRating / 100;
 
-    // Adjust based on opponent's defense
-    const defenseFactor = defenseRating / 100;
-    probability *= 1 - defenseFactor * 0.3;
+    // Base expected goals (influenced by attack strength)
+    let expectedGoals = attackStrength * 2.5; // Range: 0 to 2.5 base goals
 
-    // Home advantage (10% boost)
+    // Reduce based on opponent's defense (stronger defense = fewer goals)
+    const defenseReduction = defenseStrength * 0.4;
+    expectedGoals *= (1 - defenseReduction);
+
+    // Home advantage (15% boost)
     if (isHome) {
-      probability *= 1.1;
+      expectedGoals *= 1.15;
     }
 
-    // Ensure reasonable goal range (0.5 to 3.5 expected goals)
-    probability = Math.max(0.5, Math.min(3.5, probability * 3));
+    // Add some randomness to create variation (±20%)
+    const randomFactor = 0.8 + Math.random() * 0.4; // Range: 0.8 to 1.2
+    expectedGoals *= randomFactor;
 
-    return probability;
+    // Ensure reasonable range (0.3 to 4.0 expected goals)
+    expectedGoals = Math.max(0.3, Math.min(4.0, expectedGoals));
+
+    return expectedGoals;
   }
 
   /**
-   * Generate number of goals using Poisson distribution approximation
+   * Generate number of goals using improved Poisson distribution
    */
   private generateGoals(probability: number): number {
-    // Simple Poisson approximation using multiple random checks
-    let goals = 0;
-    let remainingProbability = probability;
+    // Better Poisson distribution approximation
+    // Using the inverse transform method for more realistic variation
+    
+    const L = Math.exp(-probability);
+    let k = 0;
+    let p = 1;
 
-    while (remainingProbability > 0) {
-      if (Math.random() < remainingProbability) {
-        goals++;
-        remainingProbability -= 1;
-      } else {
-        break;
-      }
-    }
+    do {
+      k++;
+      p *= Math.random();
+    } while (p > L);
 
-    return goals;
+    // Return k-1 (Poisson random variable)
+    const goals = Math.max(0, k - 1);
+    
+    // Cap at reasonable maximum (6 goals)
+    return Math.min(goals, 6);
   }
 
   /**

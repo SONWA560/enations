@@ -56,6 +56,7 @@ export default function RegisterFederationPage() {
         userId: user.uid,
         country,
         managerName,
+        representativeEmail: user.email || '', // Add user's email to federation
         teamRating: 0,
         isActive: false, // Changed to false - will be set to true after squad registration
         hasSquad: false, // Track if squad is registered

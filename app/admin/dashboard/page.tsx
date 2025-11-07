@@ -20,13 +20,30 @@ import {
 import { collection, getDocs, query, doc, getDoc, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { toast } from "sonner";
-import { Trophy, Users, Calendar, Sparkles, Mail, Home, RotateCcw } from "lucide-react";
+import { Trophy, Users, Calendar, Sparkles, Mail, Home, RotateCcw, Award, Zap, BarChart3, AlertTriangle } from "lucide-react";
 import { TournamentControlPanel } from "@/components/tournament-control-panel";
 import { TournamentManager } from "@/lib/classes/TournamentManager";
 import { MatchEngine } from "@/lib/classes/MatchEngine";
 import { completeMatch, simulateMatchQuick } from "@/lib/utils/matchCompletion";
 import { getCountryFlagUrl } from "@/lib/utils/countryLogos";
 import Image from "next/image";
+import { MatchStatisticsDisplay } from "@/components/match-statistics-display";
+
+// Helper function to remove undefined values from objects (Firestore doesn't accept undefined)
+function removeUndefined(obj: any): any {
+  if (Array.isArray(obj)) {
+    return obj.map(item => removeUndefined(item));
+  } else if (obj !== null && typeof obj === 'object') {
+    const newObj: any = {};
+    Object.keys(obj).forEach(key => {
+      if (obj[key] !== undefined) {
+        newObj[key] = removeUndefined(obj[key]);
+      }
+    });
+    return newObj;
+  }
+  return obj;
+}
 
 interface Federation {
   id: string;
@@ -55,7 +72,7 @@ export default function AdminDashboard() {
   const [tournament, setTournament] = useState<TournamentData | null>(null);
   const [matchInProgress, setMatchInProgress] = useState(false);
   const [commentaryDialog, setCommentaryDialog] = useState(false);
-  const [currentCommentary, setCurrentCommentary] = useState<string>("");
+  const [currentCommentary, setCurrentCommentary] = useState<any>("");
   const [currentMatchResult, setCurrentMatchResult] = useState<any>(null);
 
   useEffect(() => {
@@ -123,11 +140,25 @@ export default function AdminDashboard() {
       players = teamData.players;
     }
     
+    // Get representative email - fallback to user document if not in federation
+    let representativeEmail = teamData.representativeEmail;
+    if (!representativeEmail && teamData.userId) {
+      try {
+        const userDoc = await getDoc(doc(db, "users", teamData.userId));
+        if (userDoc.exists()) {
+          representativeEmail = userDoc.data().email;
+          console.log(`📧 Fetched email from user document for ${teamData.country}:`, representativeEmail);
+        }
+      } catch (error) {
+        console.error('Error fetching user email:', error);
+      }
+    }
+    
     return {
       id: teamDoc.id,
       country: teamData.country,
       teamRating: teamData.teamRating,
-      representativeEmail: teamData.representativeEmail,
+      representativeEmail: representativeEmail,
       squad: players,
       ...teamData
     };
@@ -231,6 +262,12 @@ export default function AdminDashboard() {
 
   const handlePlayNextMatch = async () => {
     if (!tournament || !tournament.bracket) return;
+    
+    // Prevent multiple clicks
+    if (matchInProgress) {
+      toast.error("A match is already in progress. Please wait...");
+      return;
+    }
 
     setMatchInProgress(true);
     const loadingToast = toast.loading("Playing match with AI commentary...");
@@ -251,6 +288,19 @@ export default function AdminDashboard() {
         toast.error("No matches available to play");
         toast.dismiss(loadingToast);
         setMatchInProgress(false);
+        return;
+      }
+
+      // Check if match is already completed (prevent duplicate plays)
+      if (nextMatch.completed) {
+        toast.error("This match has already been completed. Refreshing tournament data...");
+        toast.dismiss(loadingToast);
+        setMatchInProgress(false);
+        // Refresh tournament data from Firestore
+        const tournamentDoc = await getDoc(doc(db, "tournament", "current"));
+        if (tournamentDoc.exists()) {
+          setTournament({ id: tournamentDoc.id, ...tournamentDoc.data() } as TournamentData);
+        }
         return;
       }
 
@@ -282,6 +332,16 @@ export default function AdminDashboard() {
 
       console.log('Home team players:', homeTeam.squad.length);
       console.log('Away team players:', awayTeam.squad.length);
+      console.log('📧 Team emails before completeMatch:', {
+        homeTeam: {
+          country: homeTeam.country,
+          email: homeTeam.representativeEmail
+        },
+        awayTeam: {
+          country: awayTeam.country,
+          email: awayTeam.representativeEmail
+        }
+      });
 
       // Simulate the match using MatchEngine
       const engine = new MatchEngine(
@@ -371,7 +431,18 @@ export default function AdminDashboard() {
         nextMatch.id,
         matchResult.homeScore,
         matchResult.awayScore,
-        goalScorersData
+        goalScorersData,
+        true, // wasPlayed = true
+        completion.commentary, // Store the structured commentary
+        {
+          possession: matchResult.stats.possession,
+          shots: matchResult.stats.shots,
+          shotsOnTarget: matchResult.stats.shotsOnTarget,
+          fouls: matchResult.stats.fouls,
+          corners: matchResult.stats.corners,
+          yellowCards: matchResult.stats.yellowCards,
+          redCards: matchResult.stats.redCards
+        }
       );
 
       const isTournamentComplete = manager.isTournamentComplete();
@@ -379,13 +450,22 @@ export default function AdminDashboard() {
                       updatedBracket.final.homeTeam && updatedBracket.final.awayTeam ? "F" :
                       updatedBracket.semiFinals.some(m => !m.completed) ? "SF" : "QF";
 
-      // Update Firestore with new bracket state
-      await updateDoc(doc(db, "tournament", "current"), {
+      // Update Firestore with new bracket state (filter out undefined values)
+      const updateData: any = {
         bracket: updatedBracket,
         currentRound: newCurrentRound,
         status: isTournamentComplete ? "completed" : "in_progress",
         updatedAt: new Date().toISOString()
+      };
+
+      // Remove any undefined values
+      Object.keys(updateData).forEach(key => {
+        if (updateData[key] === undefined) {
+          delete updateData[key];
+        }
       });
+
+      await updateDoc(doc(db, "tournament", "current"), removeUndefined(updateData));
 
       // Refresh tournament data
       const tournamentDoc = await getDoc(doc(db, "tournament", "current"));
@@ -407,6 +487,16 @@ export default function AdminDashboard() {
       toast.dismiss(loadingToast);
       toast.error("Failed to play match: " + error.message);
       console.error(error);
+      
+      // Refresh tournament data to ensure we're in sync
+      try {
+        const tournamentDoc = await getDoc(doc(db, "tournament", "current"));
+        if (tournamentDoc.exists()) {
+          setTournament({ id: tournamentDoc.id, ...tournamentDoc.data() } as TournamentData);
+        }
+      } catch (refreshError) {
+        console.error("Failed to refresh tournament data:", refreshError);
+      }
     } finally {
       setMatchInProgress(false);
     }
@@ -414,6 +504,12 @@ export default function AdminDashboard() {
 
   const handleSimulateQuick = async () => {
     if (!tournament || !tournament.bracket) return;
+    
+    // Prevent multiple clicks
+    if (matchInProgress) {
+      toast.error("A match is already in progress. Please wait...");
+      return;
+    }
 
     setMatchInProgress(true);
     const loadingToast = toast.loading("Simulating match (no AI)...");
@@ -433,6 +529,19 @@ export default function AdminDashboard() {
         toast.error("No matches available to play");
         toast.dismiss(loadingToast);
         setMatchInProgress(false);
+        return;
+      }
+
+      // Check if match is already completed (prevent duplicate plays)
+      if (nextMatch.completed) {
+        toast.error("This match has already been completed. Refreshing tournament data...");
+        toast.dismiss(loadingToast);
+        setMatchInProgress(false);
+        // Refresh tournament data from Firestore
+        const tournamentDoc = await getDoc(doc(db, "tournament", "current"));
+        if (tournamentDoc.exists()) {
+          setTournament({ id: tournamentDoc.id, ...tournamentDoc.data() } as TournamentData);
+        }
         return;
       }
 
@@ -514,7 +623,18 @@ export default function AdminDashboard() {
         nextMatch.id,
         matchResult.homeScore,
         matchResult.awayScore,
-        goalScorersData
+        goalScorersData,
+        false, // wasPlayed = false (simulated)
+        undefined, // No commentary for simulated matches
+        {
+          possession: matchResult.stats.possession,
+          shots: matchResult.stats.shots,
+          shotsOnTarget: matchResult.stats.shotsOnTarget,
+          fouls: matchResult.stats.fouls,
+          corners: matchResult.stats.corners,
+          yellowCards: matchResult.stats.yellowCards,
+          redCards: matchResult.stats.redCards
+        }
       );
 
       const isTournamentComplete = manager.isTournamentComplete();
@@ -522,12 +642,22 @@ export default function AdminDashboard() {
                       updatedBracket.final.homeTeam && updatedBracket.final.awayTeam ? "F" :
                       updatedBracket.semiFinals.some(m => !m.completed) ? "SF" : "QF";
 
-      await updateDoc(doc(db, "tournament", "current"), {
+      // Update Firestore with new bracket state (filter out undefined values)
+      const updateData: any = {
         bracket: updatedBracket,
         currentRound: newCurrentRound,
         status: isTournamentComplete ? "completed" : "in_progress",
         updatedAt: new Date().toISOString()
+      };
+
+      // Remove any undefined values
+      Object.keys(updateData).forEach(key => {
+        if (updateData[key] === undefined) {
+          delete updateData[key];
+        }
       });
+
+      await updateDoc(doc(db, "tournament", "current"), removeUndefined(updateData));
 
       const tournamentDoc = await getDoc(doc(db, "tournament", "current"));
       if (tournamentDoc.exists()) {
@@ -541,6 +671,16 @@ export default function AdminDashboard() {
       toast.dismiss(loadingToast);
       toast.error("Failed to simulate match");
       console.error(error);
+      
+      // Refresh tournament data to ensure we're in sync
+      try {
+        const tournamentDoc = await getDoc(doc(db, "tournament", "current"));
+        if (tournamentDoc.exists()) {
+          setTournament({ id: tournamentDoc.id, ...tournamentDoc.data() } as TournamentData);
+        }
+      } catch (refreshError) {
+        console.error("Failed to refresh tournament data:", refreshError);
+      }
     } finally {
       setMatchInProgress(false);
     }
@@ -548,7 +688,7 @@ export default function AdminDashboard() {
 
   const handleResetTournament = async () => {
     const confirmed = window.confirm(
-      "⚠️ Are you sure you want to reset the tournament?\n\n" +
+      "⚠ WARNING: Are you sure you want to reset the tournament?\n\n" +
       "This will:\n" +
       "• Delete all match results\n" +
       "• Clear the bracket\n" +
@@ -791,8 +931,9 @@ export default function AdminDashboard() {
                   : "All federations have registered squads! Ready to start tournament."}
               </p>
               {federations.length > federations.filter(f => f.isActive).length && (
-                <p className="text-xs text-amber-600 dark:text-amber-400 text-center">
-                  ⚠️ {federations.length - federations.filter(f => f.isActive).length} federation(s) registered but haven't completed squad selection
+                <p className="text-xs text-amber-600 dark:text-amber-400 text-center flex items-center justify-center gap-1">
+                  <AlertTriangle className="h-3 w-3" />
+                  {federations.length - federations.filter(f => f.isActive).length} federation(s) registered but haven't completed squad selection
                 </p>
               )}
             </CardContent>
@@ -886,32 +1027,115 @@ export default function AdminDashboard() {
 
         {/* AI Commentary Dialog */}
         <Dialog open={commentaryDialog} onOpenChange={setCommentaryDialog}>
-          <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogContent className="max-w-3xl max-h-[85vh] overflow-y-auto">
             <DialogHeader>
               <DialogTitle className="flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-primary" />
-                Match Commentary
+                Match Commentary & Statistics
               </DialogTitle>
-              <DialogDescription>
-                {currentMatchResult && (
-                  <div className="flex items-center justify-center gap-4 py-2">
-                    <span className="font-semibold">{currentMatchResult.winner === 'home' ? '🏆' : ''}</span>
-                    <span className="font-semibold text-lg">
-                      {currentMatchResult.homeScore}
-                    </span>
-                    <span className="text-muted-foreground">-</span>
-                    <span className="font-semibold text-lg">
-                      {currentMatchResult.awayScore}
-                    </span>
-                    <span className="font-semibold">{currentMatchResult.winner === 'away' ? '🏆' : ''}</span>
-                  </div>
-                )}
-              </DialogDescription>
             </DialogHeader>
-            <div className="space-y-4">
-              <div className="prose prose-sm dark:prose-invert max-w-none">
-                <p className="whitespace-pre-wrap">{currentCommentary}</p>
+            {currentMatchResult && (
+              <div className="flex items-center justify-center gap-4 py-2 border-b pb-4">
+                {currentMatchResult.winner === 'home' && <Trophy className="h-4 w-4 text-yellow-500" />}
+                <span className="font-semibold text-lg">
+                  {currentMatchResult.homeScore}
+                </span>
+                <span className="text-muted-foreground">-</span>
+                <span className="font-semibold text-lg">
+                  {currentMatchResult.awayScore}
+                </span>
+                {currentMatchResult.winner === 'away' && <Trophy className="h-4 w-4 text-yellow-500" />}
               </div>
+            )}
+            <div className="space-y-6">
+              {/* Structured Commentary */}
+              {typeof currentCommentary === 'object' && currentCommentary !== null ? (
+                <>
+                  {/* Match Summary */}
+                  {currentCommentary.summary && (
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-lg flex items-center gap-2">
+                        <Trophy className="h-4 w-4" />
+                        Match Summary
+                      </h3>
+                      <p className="text-sm leading-relaxed">{currentCommentary.summary}</p>
+                    </div>
+                  )}
+
+                  {/* Key Moments */}
+                  {currentCommentary.keyMoments && currentCommentary.keyMoments.length > 0 && (
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-lg flex items-center gap-2">
+                        <Zap className="h-4 w-4" />
+                        Key Moments
+                      </h3>
+                      <div className="space-y-2">
+                        {currentCommentary.keyMoments.map((moment: any, idx: number) => (
+                          <div key={idx} className="flex gap-3 p-2 bg-muted/50 rounded-lg">
+                            <Badge variant="outline" className="shrink-0">{moment.minute}'</Badge>
+                            <p className="text-sm">{moment.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Player of the Match */}
+                  {currentCommentary.playerOfMatch && (
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-lg flex items-center gap-2">
+                        <Award className="h-4 w-4" />
+                        Player of the Match
+                      </h3>
+                      <Card className="p-4 bg-primary/5 border-primary/20">
+                        <div className="space-y-1">
+                          <p className="font-semibold text-base">{currentCommentary.playerOfMatch.name}</p>
+                          <p className="text-sm text-muted-foreground">{currentCommentary.playerOfMatch.team}</p>
+                          <p className="text-sm mt-2">{currentCommentary.playerOfMatch.reason}</p>
+                        </div>
+                      </Card>
+                    </div>
+                  )}
+
+                  {/* Analysis */}
+                  {currentCommentary.analysis && (
+                    <div className="space-y-2">
+                      <h3 className="font-semibold text-lg flex items-center gap-2">
+                        <BarChart3 className="h-4 w-4" />
+                        Analysis
+                      </h3>
+                      <p className="text-sm leading-relaxed bg-muted/30 p-3 rounded-lg">
+                        {currentCommentary.analysis}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* Match Statistics */}
+                  {currentMatchResult && currentMatchResult.stats && (
+                    <div className="space-y-2">
+                      <MatchStatisticsDisplay
+                        homeTeam="Home Team"
+                        awayTeam="Away Team"
+                        statistics={{
+                          possession: currentMatchResult.stats.possession,
+                          shots: currentMatchResult.stats.shots,
+                          shotsOnTarget: currentMatchResult.stats.shotsOnTarget,
+                          fouls: currentMatchResult.stats.fouls,
+                          corners: currentMatchResult.stats.corners,
+                          yellowCards: currentMatchResult.stats.yellowCards,
+                          redCards: currentMatchResult.stats.redCards,
+                        }}
+                        compact={false}
+                      />
+                    </div>
+                  )}
+                </>
+              ) : (
+                /* Fallback for plain text commentary */
+                <div className="prose prose-sm dark:prose-invert max-w-none">
+                  <p className="whitespace-pre-wrap">{currentCommentary}</p>
+                </div>
+              )}
             </div>
           </DialogContent>
         </Dialog>
