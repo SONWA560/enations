@@ -1,9 +1,12 @@
 import { NextResponse } from 'next/server';
 import OpenAI from 'openai';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Lazy initialization of OpenAI client to avoid build-time errors
+function getOpenAIClient() {
+  return new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+}
 
 export async function POST(request: Request) {
   try {
@@ -20,6 +23,9 @@ export async function POST(request: Request) {
 
     // Build contextual prompt for OpenAI
     const prompt = buildCommentaryPrompt(team1, team2, score1, score2, goalScorers, matchEvents);
+
+    // Initialize OpenAI client only when needed
+    const openai = getOpenAIClient();
 
     // Call OpenAI API
     const completion = await openai.chat.completions.create({
